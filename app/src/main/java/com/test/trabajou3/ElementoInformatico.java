@@ -10,7 +10,6 @@ public class ElementoInformatico {
         this.descripcion = descripcion;
         this.foto = foto;
     }
-
     public String getNombre() {
         return nombre;
     }
