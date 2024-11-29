@@ -43,7 +43,6 @@ public class ElementoInformatico {
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
-
     public String getNombre() {
         return nombre;
     }

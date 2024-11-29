@@ -43,9 +43,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ElementoViewHolder> {
         GradientDrawable drawable = new GradientDrawable();
         drawable.setShape(GradientDrawable.RECTANGLE);
         drawable.setCornerRadius(12f); // Establecer radio de esquinas redondeadas
-        drawable.setStroke(2, 0xFFE0E0E0); // Borde de 2px de color gris claro
+        drawable.setStroke(3, 0xFFE0E0E0); // Borde de 2px de color gris claro
         drawable.setColor(0xFFFFFFFF); // Fondo blanco
         holder.itemView.setBackground(drawable);  // Aplicar el fondo redondeado al LinearLayout
+        ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) holder.itemView.getLayoutParams();
+        layoutParams.setMargins(16, 16, 16, 16); // Márgenes: izquierda, arriba, derecha, abajo
+        holder.itemView.setLayoutParams(layoutParams);
     }
 
     @Override
