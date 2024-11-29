@@ -1,5 +1,14 @@
 <resources>
     <string name="app_name">TrabajoU3</string>
     <string name="image_description">Descripción de la imagen</string>
+    <string name="borrar">Borrar</string>
+    <string name="filtro_por_marca">Filtro por marca</string>
+    <string name="enviar">Enviar</string>
+    <string name="gpu" translatable="false">GPU</string>
+    <string name="cpu" translatable="false">CPU</string>
+    <string name="pb" translatable="false">PB</string>
+    <string name="ram" translatable="false">RAM</string>
+    <string name="id" translatable="false">ID:</string>
+    <string name="unidades">Unidades:</string>
 
 </resources>

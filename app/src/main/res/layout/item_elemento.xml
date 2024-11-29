@@ -1,9 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="8dp">
+    android:padding="8dp"
+    android:background="@drawable/lista"
+    android:layout_margin="8dp">
 
     <ImageView
         android:id="@+id/imagen"
@@ -31,20 +33,35 @@
             android:layout_height="wrap_content"
             android:textSize="14sp" />
 
-        <!-- Texto para mostrar el ID -->
-        <TextView
-            android:id="@+id/idProducto"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ID: "
-            android:textSize="14sp" />
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp"> <!-- Añadí un margen superior para separar del texto -->
 
-        <!-- Texto para mostrar las unidades -->
-        <TextView
-            android:id="@+id/unidades"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Unidades: "
-            android:textSize="14sp" />
+            <TextView
+                android:id="@+id/idProducto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:text="@string/id"
+                android:layout_marginEnd="8dp"/> <!-- Separación entre ID y Unidades -->
+
+            <TextView
+                android:id="@+id/unidadesTexto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:text="@string/unidades" />
+
+            <TextView
+                android:id="@+id/unidadesNumero"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp" />
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
+
+
+

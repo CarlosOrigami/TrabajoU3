@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TrabajoU3</string>
+    <string name="image_description">Descripcion da imaxe</string>
+    <string name="borrar">Borrar</string>
+    <string name="filtro_por_marca">Filtro por marca</string>
+    <string name="enviar">Enviar</string>
+    <string name="unidades">Unidades</string>
+</resources>

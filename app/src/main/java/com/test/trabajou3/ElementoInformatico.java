@@ -5,10 +5,10 @@ public class ElementoInformatico {
     private String nombre;
     private String descripcion;
     private int foto;
-    private int id;  // ID único del producto
-    private int unidades;  // Número de unidades disponibles
+    private int id;
+    private int unidades;
 
-    // Constructor modificado
+    // Constructor con parámetros
     public ElementoInformatico(int id, String categoria, String nombre, String descripcion, int foto, int unidades) {
         this.id = id;
         this.categoria = categoria;
@@ -36,6 +36,7 @@ public class ElementoInformatico {
         this.unidades = unidades;
     }
 
+    // Getter y Setter para la categoría
     public String getCategoria() {
         return categoria;
     }
@@ -43,6 +44,8 @@ public class ElementoInformatico {
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
+
+    // Getter y Setter para el nombre
     public String getNombre() {
         return nombre;
     }
@@ -51,6 +54,7 @@ public class ElementoInformatico {
         this.nombre = nombre;
     }
 
+    // Getter y Setter para la descripción
     public String getDescripcion() {
         return descripcion;
     }
@@ -59,6 +63,7 @@ public class ElementoInformatico {
         this.descripcion = descripcion;
     }
 
+    // Getter y Setter para la foto
     public int getFoto() {
         return foto;
     }
