@@ -2,16 +2,18 @@ package com.test.trabajou3;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,34 +50,51 @@ public class MainActivity extends AppCompatActivity {
         adapter = new Adapter(elementos);
         recyclerView.setAdapter(adapter);
 
+        TabLayout tabLayout = findViewById(R.id.tabLayout);
+
+        // Agregar las pestañas
+        tabLayout.addTab(tabLayout.newTab().setText("Principal"));
+        tabLayout.addTab(tabLayout.newTab().setText("Próximamente"));
+
+        // Configurar el listener para las pestañas
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                if (tab.getPosition() == 1) {
+                    Snackbar.make(findViewById(android.R.id.content), "Próximamente", Snackbar.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
+        });
+
 
         // Listener para filtrar elementos según los switches
         View.OnClickListener switchListener = view -> {
             List<ElementoInformatico> elementosFiltrados = new ArrayList<>();
             if (switchPB.isChecked()) {
-                Log.d("MainActivity", "Filtrando por categoría: PB");
                 elementosFiltrados.addAll(filtrarPorCategoria("PB"));
             }
             if (switchRAM.isChecked()) {
-                Log.d("MainActivity", "Filtrando por categoría: RAM");
                 elementosFiltrados.addAll(filtrarPorCategoria("RAM"));
             }
             if (switchGPU.isChecked()) {
-                Log.d("MainActivity", "Filtrando por categoría: GPU");
                 elementosFiltrados.addAll(filtrarPorCategoria("GPU"));
             }
             if (switchCPU.isChecked()) {
-                Log.d("MainActivity", "Filtrando por categoría: CPU");
                 elementosFiltrados.addAll(filtrarPorCategoria("CPU"));
             }
 
-            // Mostrar todos si no hay ningún switch seleccionado
             if (elementosFiltrados.isEmpty()) {
-                Log.d("MainActivity", "No se ha seleccionado ninguna categoría.");
                 elementosFiltrados = elementos;
             }
 
-            // Actualizar la lista en el adapter
             adapter.updateList(elementosFiltrados);
         };
 
@@ -88,17 +107,17 @@ public class MainActivity extends AppCompatActivity {
         // Acción al presionar el botón de Enviar
         botonEnviar.setOnClickListener(view -> {
             String query = editText.getText().toString().trim();
-            Log.d("MainActivity", "Consulta de marca: " + query);
 
             if (query.isEmpty()) {
-                Toast.makeText(MainActivity.this, "Por favor, ingrese una marca", Toast.LENGTH_SHORT).show();
+                // Sustitución de Toast por Snackbar
+                Snackbar.make(view, "Por favor, ingrese una marca", Snackbar.LENGTH_SHORT).show();
             } else {
                 List<ElementoInformatico> elementosFiltrados = filtrarPorMarca(query);
                 if (elementosFiltrados.isEmpty()) {
-                    Toast.makeText(MainActivity.this, "Marca no válida", Toast.LENGTH_SHORT).show();
+                    // Sustitución de Toast por Snackbar
+                    Snackbar.make(view, "Marca no válida", Snackbar.LENGTH_SHORT).show();
                 } else {
                     adapter.updateList(elementosFiltrados);
-
                 }
             }
         });
@@ -111,7 +130,6 @@ public class MainActivity extends AppCompatActivity {
             switchGPU.setChecked(false);
             switchCPU.setChecked(false);
             adapter.updateList(elementos);
-            Log.d("MainActivity", "Campos borrados");
         });
     }
 
@@ -132,17 +150,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private List<ElementoInformatico> filtrarPorCategoria(String categoria) {
-        Log.d("MainActivity", "Filtrando por categoría: " + categoria);
         return elementos.stream()
                 .filter(elemento -> elemento.getCategoria().equalsIgnoreCase(categoria))
                 .collect(Collectors.toList());
     }
 
     private List<ElementoInformatico> filtrarPorMarca(String marca) {
-        Log.d("MainActivity", "Filtrando  por marca: " + marca);
         return elementos.stream()
                 .filter(elemento -> elemento.getNombre().toLowerCase().contains(marca.toLowerCase()) ||
                         elemento.getDescripcion().toLowerCase().contains(marca.toLowerCase()))
                 .collect(Collectors.toList());
     }
 }
+
+
