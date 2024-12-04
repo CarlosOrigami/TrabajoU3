@@ -1,0 +1,180 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_theme_inverseOnSurface"
+    android:id="@+id/rootLayout"
+    tools:context=".MainActivity">
+
+
+    <!-- Iconos superiores -->
+    <ImageView
+        android:id="@+id/menuIcon"
+        android:layout_width="74dp"
+        android:layout_height="57dp"
+        android:layout_margin="16dp"
+        android:src="@drawable/hamburguesa"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/profileIcon"
+        android:layout_width="87dp"
+        android:layout_height="66dp"
+        android:layout_margin="16dp"
+        android:src="@drawable/perfil"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- LinearLayout para Switches centrado horizontalmente -->
+    <LinearLayout
+        android:id="@+id/controlsContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/menuIcon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <Switch
+            android:id="@+id/switch_pb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pb"
+            android:textColor="@color/md_theme_onBackground"
+            android:thumbTint="@color/blue"
+            android:trackTint="@color/blue"
+            tools:ignore="UseSwitchCompatOrMaterialXml,TouchTargetSizeCheck" />
+
+        <Switch
+            android:id="@+id/switch_ram"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ram"
+            android:textColor="@color/md_theme_onBackground"
+            android:thumbTint="@color/blue"
+            android:trackTint="@color/blue"
+            tools:ignore="UseSwitchCompatOrMaterialXml,TouchTargetSizeCheck" />
+
+        <Switch
+            android:id="@+id/switch_gpu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/gpu"
+            android:textColor="@color/md_theme_onBackground"
+            android:thumbTint="@color/blue"
+            android:trackTint="@color/blue"
+            tools:ignore="UseSwitchCompatOrMaterialXml,TouchTargetSizeCheck" />
+
+        <Switch
+            android:id="@+id/switch_cpu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cpu"
+            android:textColor="@color/md_theme_onBackground"
+            android:thumbTint="@color/blue"
+            android:trackTint="@color/blue"
+            tools:ignore="UseSwitchCompatOrMaterialXml,TouchTargetSizeCheck" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/controlsContainer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- EditText para el filtro -->
+        <EditText
+            android:id="@+id/editTextText2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="2"
+            android:autofillHints=""
+            android:hint="@string/filtro_por_marca"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:textColor="@color/md_theme_onBackground"
+            android:textColorHint="#546E7A"
+            android:textSize="17sp"
+            tools:ignore="VisualLintTextFieldSize,TouchTargetSizeCheck" />
+
+        <!-- Botón Enviar -->
+        <Button
+            android:id="@+id/enviar"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="@color/md_theme_primary"
+            android:text="@string/enviar"
+            android:textColor="@color/md_theme_onPrimary"
+            android:textSize="12sp"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <!-- Botón Borrar -->
+        <Button
+            android:id="@+id/borrar"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="@color/md_theme_error_mediumContrast"
+            android:text="@string/borrar"
+            android:textColor="@color/md_theme_onSecondary"
+            android:textSize="12sp"
+            tools:ignore="TouchTargetSizeCheck" />
+    </LinearLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout"
+        app:tabIndicatorColor="@color/md_theme_primary"
+        app:tabSelectedTextColor="@color/md_theme_primary"
+        app:tabTextColor="@color/md_theme_onSurface" />
+
+
+    <!-- FrameLayout para el contenido dinámico de las pestañas -->
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tabLayout"
+        app:layout_constraintBottom_toTopOf="@id/recyclerView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- RecyclerView para la lista -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintTop_toBottomOf="@id/frameLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+
