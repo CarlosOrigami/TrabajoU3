@@ -2,11 +2,14 @@ package com.test.trabajou3;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.PopupWindow;
 import android.widget.Switch;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -109,15 +112,16 @@ public class MainActivity extends AppCompatActivity {
             String query = editText.getText().toString().trim();
 
             if (query.isEmpty()) {
-                // Sustitución de Toast por Snackbar
                 Snackbar.make(view, "Por favor, ingrese una marca", Snackbar.LENGTH_SHORT).show();
+                mostrarPopup(view, "Por favor, ingrese una marca");
             } else {
                 List<ElementoInformatico> elementosFiltrados = filtrarPorMarca(query);
                 if (elementosFiltrados.isEmpty()) {
-                    // Sustitución de Toast por Snackbar
                     Snackbar.make(view, "Marca no válida", Snackbar.LENGTH_SHORT).show();
+                    mostrarPopup(view, "Marca no válida");
                 } else {
                     adapter.updateList(elementosFiltrados);
+                    mostrarPopup(view, "Elementos encontrados: " + elementosFiltrados.size());
                 }
             }
         });
@@ -131,6 +135,22 @@ public class MainActivity extends AppCompatActivity {
             switchCPU.setChecked(false);
             adapter.updateList(elementos);
         });
+    }
+    private void mostrarPopup(View view, String mensaje) {
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.popup_layout, null);
+
+        PopupWindow popupWindow = new PopupWindow(popupView,
+                RecyclerView.LayoutParams.WRAP_CONTENT,
+                RecyclerView.LayoutParams.WRAP_CONTENT, true);
+
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+        Button closePopup = popupView.findViewById(R.id.buttonClosePopup);
+        closePopup.setOnClickListener(v -> popupWindow.dismiss());
+
+        EditText textViewPopup = popupView.findViewById(R.id.textViewPopup);
+        textViewPopup.setText(mensaje);
     }
 
     private List<ElementoInformatico> obtenerListaDeElementos() {
